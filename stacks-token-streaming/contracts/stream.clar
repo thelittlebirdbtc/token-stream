@@ -100,13 +100,13 @@
     (stop-block (get stop-block timeframe))
 
     (delta 
-      (if (<= block-height start-block)
+      (if (<= stacks-block-height start-block)
         ;; then
         u0
         ;; else
-        (if (< block-height stop-block)
+        (if (< stacks-block-height stop-block)
           ;; then
-          (- block-height start-block)
+          (- stacks-block-height start-block)
           ;; else
           (- stop-block start-block)
         ) 
@@ -143,7 +143,7 @@
     (balance (balance-of stream-id (get sender stream)))
   )
     (asserts! (is-eq contract-caller (get sender stream)) ERR_UNAUTHORIZED)
-    (asserts! (< (get stop-block (get timeframe stream)) block-height) ERR_STREAM_STILL_ACTIVE)
+    (asserts! (< (get stop-block (get timeframe stream)) stacks-block-height) ERR_STREAM_STILL_ACTIVE)
     (map-set streams stream-id (merge stream {
         balance: (- (get balance stream) balance),
       }
