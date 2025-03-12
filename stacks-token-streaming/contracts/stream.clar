@@ -21,6 +21,7 @@
   }
 )
 
+
 ;; Create a new stream
 (define-public (stream-to
     (recipient principal)
@@ -51,6 +52,7 @@
     (ok current-stream-id)
   )
 )
+
 
 ;; Increase the locked STX balance for a stream
 (define-public (refuel
